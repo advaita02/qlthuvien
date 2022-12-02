@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: bisque;" stylesheets="@../../../styles/fxmldangnhap.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.qlthuvien.FXMLDangNhapController">
+   <children>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ĐĂNG NHẬP QUẢN LÍ THƯ VIỆN" wrappingWidth="226.13671875" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tên đăng nhập" />
+      <TextField fx:id="txtTenDangNhap" style="-fx-pref-width: 200; -fx-pref-height: 30;" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mật khẩu" />
+      <PasswordField fx:id="txtMatKhau" />
+      <HBox prefHeight="35.0" prefWidth="600.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#dangNhapBt" text="Đăng nhập" />
+         </children>
+      </HBox>
+      <VBox prefHeight="259.0" prefWidth="600.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Đăng kí tài khoản" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Họ và tên" />
+            <TextField fx:id="txtHoVaTen" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tạo tên đăng nhập" />
+            <TextField fx:id="txtTenDangNhapdk" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tạo mật khẩu" />
+            <PasswordField fx:id="txtMatKhaudk1" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nhập lại mật khẩu" />
+            <PasswordField fx:id="txtMatKhaudk2" />
+            <Button mnemonicParsing="false" onAction="#themNhanVienBt" text="Đăng kí" />
+         </children>
+      </VBox>
+   </children>
+</VBox>

@@ -1,0 +1,17 @@
+/*
+ * Empty Stylesheet file.
+ */
+* {
+    -fx-font-family: Tahoma;
+}
+VBox {
+    -fx-background-color: lightblue;
+    -fx-padding: 10;
+    -fx-spacing: 10;
+}
+HBox {
+    -fx-spacing: 10;
+}
+.mainFxmlClass {
+
+}
