@@ -12,13 +12,13 @@ public class SachThanhLy {
     private int maSach_ThanhLy;
     private String tenSach;
     private String tacGia;
-    private String soTrang;
+    private int soTrang;
     private int giaBan;
 
     public SachThanhLy() {
     }
 
-    public SachThanhLy(int maSach_ThanhLy, String tenSach, String tacGia, String soTrang, int giaBan) {
+    public SachThanhLy(int maSach_ThanhLy, String tenSach, String tacGia, int soTrang, int giaBan) {
         this.maSach_ThanhLy = maSach_ThanhLy;
         this.tenSach = tenSach;
         this.tacGia = tacGia;
@@ -73,14 +73,14 @@ public class SachThanhLy {
     /**
      * @return the soTrang
      */
-    public String getSoTrang() {
+    public int getSoTrang() {
         return soTrang;
     }
 
     /**
      * @param soTrang the soTrang to set
      */
-    public void setSoTrang(String soTrang) {
+    public void setSoTrang(int soTrang) {
         this.soTrang = soTrang;
     }
 

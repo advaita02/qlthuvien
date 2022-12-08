@@ -4,7 +4,6 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,14 +11,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="472.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.qlthuvien.FXMLThemSachController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="588.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.qlthuvien.FXMLMainController">
   <tabs>
-    <Tab text="Thêm sách">
+    <Tab text="QUẢN LÝ SÁCH">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="482.0" prefWidth="600.0">
                <children>
-                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="441.0" prefWidth="600.0" stylesheets="@../../../styles/fxmlthemsach.css">
+                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="600.0" stylesheets="@../../../styles/fxmlthemsach.css">
                      <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="THÊM SÁCH" />
                         <HBox layoutX="10.0" layoutY="26.0" prefHeight="33.0" prefWidth="600.0">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tên sách : " />
@@ -44,35 +44,28 @@
                               <TextField fx:id="txtSoTrang" />
                            </children>
                         </HBox>
+                        <Button mnemonicParsing="false" onAction="#addSachHandler" text="Thêm" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="XÓA SÁCH" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nhập mã sách để xóa sách :" />
+                        <TextField fx:id="txtMaSach" prefHeight="23.0" prefWidth="222.0" />
                         <HBox prefHeight="41.0" prefWidth="600.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#addSachHandler" text="Thêm" />
+                              <Button mnemonicParsing="false" onAction="#deleteSachHandler" prefHeight="23.0" prefWidth="47.0" text="Xóa" />
                            </children>
                         </HBox>
-                        <TableView prefHeight="197.0" prefWidth="580.0">
-                           <columns>
-                              <TableColumn prefWidth="75.0" text="C1" />
-                              <TableColumn prefWidth="75.0" text="C2" />
-                           </columns>
-                        </TableView>
+                        <TextField fx:id="txtKeyWord" />
+                        <TableView fx:id="tbSach" prefHeight="197.0" prefWidth="580.0" />
                      </children>
                   </VBox>
                </children></AnchorPane>
       </content>
     </Tab>
-      <Tab text="Xóa sách">
+      <Tab text="THANH LÝ SÁCH">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-        </content>
-      </Tab>
-      <Tab text="Sửa sách">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-        </content>
-      </Tab>
-      <Tab text="Thanh lý sách">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TableView fx:id="tbThanhLy" layoutX="3.0" layoutY="14.0" prefHeight="503.0" prefWidth="594.0" />
+               </children></AnchorPane>
         </content>
       </Tab>
   </tabs>

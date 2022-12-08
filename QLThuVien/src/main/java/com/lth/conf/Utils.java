@@ -16,5 +16,4 @@ public class Utils {
         alert.setContentText(content);
         return alert;
     }
-    
 }

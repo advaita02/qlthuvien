@@ -11,13 +11,18 @@ import java.sql.Date;
  * @author lth7p
  */
 public class Sach {
+
+    /**
+     * @return the giaBia
+     */
     private int maSach;
     private String tenSach;
     private String tenTacGia;
     private Date NamXB;
     private int tinhTrang;
     private int soTrang; 
-
+    private int giaBia;
+    
     public Sach() {
     }
 
@@ -29,6 +34,16 @@ public class Sach {
         this.NamXB = NamXB;
         this.tinhTrang = tinhTrang;
         this.soTrang = soTrang;
+    }
+    
+    public Sach(int maSach, String tenSach, String tenTacGia, Date NamXB, int tinhTrang, int soTrang, int giaBia) {
+        this.maSach = maSach;
+        this.tenSach = tenSach;
+        this.tenTacGia = tenTacGia;
+        this.NamXB = NamXB;
+        this.tinhTrang = tinhTrang;
+        this.soTrang = soTrang;
+        this.giaBia = giaBia;
     }
     
     
@@ -117,4 +132,14 @@ public class Sach {
         this.soTrang = soTrang;
     }
     
+    public int getGiaBia() {
+        return giaBia;
+    }
+
+    /**
+     * @param giaBia the giaBia to set
+     */
+    public void setGiaBia(int giaBia) {
+        this.giaBia = giaBia;
+    }
 }

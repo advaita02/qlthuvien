@@ -8,7 +8,10 @@ import com.lth.bojo.Sach;
 import com.lth.conf.JdbcUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -28,5 +31,45 @@ public class SachService {
             stm.executeUpdate();
             conn.commit();
         }
+    }
+    public void deleteBook(int id) throws SQLException {
+//        try(Connection conn = JdbcUtils.getConn()) {
+//            PreparedStatement stm = conn.prepareStatement("DELETE FROM sachthanhly where MaSachTL = ?");
+//            stm.setInt(1, id);
+//            
+//            stm.executeUpdate();
+//            conn.commit();
+//        }
+        try(Connection conn = JdbcUtils.getConn()) {
+            PreparedStatement stm = conn.prepareStatement("DELETE FROM sach where MaSach = ?");
+            stm.setInt(1, id);
+            
+            stm.executeUpdate();
+            conn.commit();
+        }
+    }
+    
+    public List<Sach> getBook(String kw) throws SQLException {
+         List<Sach> sachs = new ArrayList<>();
+         try (Connection conn = JdbcUtils.getConn()) {
+             String sql = "Select * from sach";
+             if(kw != null && !kw.isEmpty()) {
+                 sql += " WHERE TenSach like concat('%', ?, '%')";
+             }
+            PreparedStatement stm = conn.prepareStatement(sql);
+            if(kw != null && !kw.isEmpty()) {
+                stm.setString(1, kw);
+            }
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()) {
+                Sach s = new Sach(rs.getInt("MaSach"), rs.getString("TenSach"), 
+                        rs.getString("TenTacGia"), rs.getDate("NamXuatBan"), 
+                        rs.getInt("TinhTrang"), rs.getInt("SoTrang"),
+                        rs.getInt("GiaBia")
+                );
+                sachs.add(s);
+            }
+         }
+        return sachs;
     }
 }

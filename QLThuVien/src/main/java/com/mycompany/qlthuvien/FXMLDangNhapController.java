@@ -5,6 +5,7 @@
 package com.mycompany.qlthuvien;
 
 import com.lth.bojo.NhanVien;
+import com.lth.bojo.Sach;
 import com.lth.conf.RegexCheck;
 import com.lth.conf.Utils;
 import com.lth.service.NhanVienService;
@@ -20,7 +21,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 /**
@@ -35,7 +39,6 @@ public class FXMLDangNhapController implements Initializable {
     @FXML private TextField txtMatKhaudk2;
     @FXML private TextField txtTenDangNhap;
     @FXML private TextField txtMatKhau;
-
     /**
      * Initializes the controller class.
      */
@@ -81,4 +84,5 @@ public class FXMLDangNhapController implements Initializable {
             Logger.getLogger(FXMLDangNhapController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
 }

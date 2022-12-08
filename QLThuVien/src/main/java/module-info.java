@@ -6,4 +6,5 @@ module com.mycompany.qlthuvien {
 
     opens com.mycompany.qlthuvien to javafx.fxml;
     exports com.mycompany.qlthuvien;
+    exports com.lth.bojo;
 }
