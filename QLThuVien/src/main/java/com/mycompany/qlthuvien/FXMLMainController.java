@@ -86,6 +86,14 @@ public class FXMLMainController implements Initializable {
             Utils.getBox("Xóa thất bại!", Alert.AlertType.WARNING).show();
         }
     }
+    public void addSachTLHandler(ActionEvent event) {
+        SachTLService stl = new SachTLService();
+        try {
+            stl.addThanhLy();
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLMainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     private void loadTableView() {
         TableColumn colMaSach = new TableColumn("Mã sách");

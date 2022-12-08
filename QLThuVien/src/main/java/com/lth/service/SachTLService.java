@@ -26,9 +26,21 @@ public class SachTLService {
 
         }
     }
-    
+    public void addThanhLy () throws SQLException {
+        try (Connection conn = JdbcUtils.getConn()) {
+            Statement stm = conn.createStatement();
+            String sql = "INSERT INTO sachthanhly(MaSachTL, TenSach, TacGia, SoTrang, GiaBan)\n" +
+"SELECT MaSach, TenSach , TenTacGia, SoTrang, GiaBia * 0.5  FROM sach\n" +
+"WHERE MaSach not in (select MaSachTL from sachthanhly) and NamXuatBan <= date_sub(now(), interval 10 year)";
+            stm.executeUpdate(sql);
+            conn.commit();
+        }
+        
+    }
     public List<SachThanhLy> getThanhLy(String kw) throws SQLException {
-         List<SachThanhLy> thanhlys= new ArrayList<>();
+//        addThanhLy();
+        List<SachThanhLy> thanhlys= new ArrayList<>();
+         
          try (Connection conn = JdbcUtils.getConn()) {
              String sql = "Select * from sachthanhly";
              if(kw != null && !kw.isEmpty()) {

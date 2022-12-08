@@ -41,13 +41,20 @@ public class SachService {
 //            conn.commit();
 //        }
         try(Connection conn = JdbcUtils.getConn()) {
-            PreparedStatement stm = conn.prepareStatement("DELETE FROM sach where MaSach = ?");
+            PreparedStatement stm = conn.prepareStatement("DELETE FROM sachthanhly where MaSachTL = ?");
             stm.setInt(1, id);
-            
+
             stm.executeUpdate();
+
+            PreparedStatement stm1 = conn.prepareStatement("DELETE FROM sach where MaSach = ?");
+            stm1.setInt(1, id);
+
+            stm1.executeUpdate();
             conn.commit();
         }
     }
+    
+    
     
     public List<Sach> getBook(String kw) throws SQLException {
          List<Sach> sachs = new ArrayList<>();

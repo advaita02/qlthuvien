@@ -4,7 +4,6 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -65,7 +64,8 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TableView fx:id="tbThanhLy" layoutX="3.0" layoutY="14.0" prefHeight="503.0" prefWidth="594.0" />
+                  <TableView fx:id="tbThanhLy" layoutX="3.0" layoutY="58.0" prefHeight="459.0" prefWidth="594.0" />
+                  <Button layoutX="242.0" layoutY="14.0" mnemonicParsing="false" onAction="#addSachTLHandler" prefHeight="27.0" prefWidth="89.0" text="CẬP NHẬT" />
                </children></AnchorPane>
         </content>
       </Tab>
@@ -86,17 +86,38 @@
                                           <TextField />
                                        </children>
                                     </HBox>
-                                    <Button mnemonicParsing="false" text="CHO MƯỢN" />
-                                    <AnchorPane prefHeight="475.0" prefWidth="268.0">
+                                    <HBox layoutX="10.0" layoutY="26.0" prefHeight="32.0" prefWidth="268.0">
                                        <children>
-                                          <TableView layoutX="-2.0" layoutY="14.0" prefHeight="449.0" prefWidth="275.0">
-                                            <columns>
-                                              <TableColumn prefWidth="75.0" text="C1" />
-                                              <TableColumn prefWidth="75.0" text="C2" />
-                                            </columns>
-                                          </TableView>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày mượn : " />
+                                          <DatePicker />
                                        </children>
-                                    </AnchorPane>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="83.0" prefHeight="32.0" prefWidth="268.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Họ tên người mượn : " />
+                                          <TextField />
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="90.0" prefHeight="32.0" prefWidth="268.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Số CCCD : " />
+                                          <TextField />
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="90.0" prefHeight="32.0" prefWidth="268.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SĐT người mượn : " />
+                                          <TextField />
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="10.0" layoutY="26.0" prefHeight="32.0" prefWidth="268.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nhân viên lập : " />
+                                          <TextField />
+                                       </children>
+                                    </HBox>
+                                    <Button mnemonicParsing="false" text="CHO MƯỢN" />
+                                    <TableView prefHeight="319.0" prefWidth="411.0" />
                                  </children>
                               </VBox>
                               <VBox prefHeight="551.0" prefWidth="323.0">
@@ -104,19 +125,14 @@
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="TRẢ SÁCH" />
                                     <HBox prefHeight="35.0" prefWidth="317.0">
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã sách : " />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã sách mượn : " />
                                           <TextField />
                                        </children>
                                     </HBox>
-                                    <Button mnemonicParsing="false" text="CHO MƯỢN" />
+                                    <Button mnemonicParsing="false" text="NHẬN SÁCH" />
                                     <AnchorPane prefHeight="479.0" prefWidth="317.0">
                                        <children>
-                                          <TableView layoutX="2.0" layoutY="13.0" prefHeight="449.0" prefWidth="314.0">
-                                            <columns>
-                                              <TableColumn prefWidth="75.0" text="C1" />
-                                              <TableColumn prefWidth="75.0" text="C2" />
-                                            </columns>
-                                          </TableView>
+                                          <TableView layoutX="2.0" layoutY="13.0" prefHeight="465.0" prefWidth="314.0" />
                                        </children>
                                     </AnchorPane>
                                  </children>
