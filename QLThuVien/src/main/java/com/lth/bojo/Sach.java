@@ -36,6 +36,14 @@ public class Sach {
         this.soTrang = soTrang;
     }
     
+    public Sach(String tenSach, String tenTacGia, Date NamXB, int tinhTrang, int soTrang, int giaBia) {
+        this.tenSach = tenSach;
+        this.tenTacGia = tenTacGia;
+        this.NamXB = NamXB;
+        this.tinhTrang = tinhTrang;
+        this.soTrang = soTrang;
+        this.giaBia = giaBia;
+    }
     public Sach(int maSach, String tenSach, String tenTacGia, Date NamXB, int tinhTrang, int soTrang, int giaBia) {
         this.maSach = maSach;
         this.tenSach = tenSach;

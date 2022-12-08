@@ -15,7 +15,7 @@
   <tabs>
     <Tab text="QUẢN LÝ SÁCH">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="482.0" prefWidth="600.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="601.0" prefWidth="600.0">
                <children>
                   <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="600.0" stylesheets="@../../../styles/fxmlthemsach.css">
                      <children>
@@ -44,6 +44,12 @@
                               <TextField fx:id="txtSoTrang" />
                            </children>
                         </HBox>
+                        <HBox layoutX="20.0" layoutY="45.0" prefHeight="33.0" prefWidth="600.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Giá bìa : " />
+                              <TextField fx:id="txtGiaBia" />
+                           </children>
+                        </HBox>
                         <Button mnemonicParsing="false" onAction="#addSachHandler" text="Thêm" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="XÓA SÁCH" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nhập mã sách để xóa sách :" />
@@ -69,7 +75,7 @@
                </children></AnchorPane>
         </content>
       </Tab>
-      <Tab text="MƯỢN/TRẢ SÁCH">
+      <Tab text="MƯỢN SÁCH">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -77,70 +83,68 @@
                      <children>
                         <HBox prefHeight="551.0" prefWidth="587.0">
                            <children>
-                              <VBox prefHeight="551.0" prefWidth="301.0">
+                              <VBox prefHeight="551.0" prefWidth="920.0">
                                  <children>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MƯỢN SÁCH" />
                                     <HBox prefHeight="32.0" prefWidth="268.0">
                                        <children>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã sách : " />
-                                          <TextField />
+                                          <TextField fx:id="txtMaSachMuon" />
                                        </children>
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="26.0" prefHeight="32.0" prefWidth="268.0">
                                        <children>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày mượn : " />
-                                          <DatePicker />
+                                          <DatePicker fx:id="dpNgayMuon" />
                                        </children>
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="83.0" prefHeight="32.0" prefWidth="268.0">
                                        <children>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Họ tên người mượn : " />
-                                          <TextField />
+                                          <TextField fx:id="txtHTNguoiMuon" />
                                        </children>
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="90.0" prefHeight="32.0" prefWidth="268.0">
                                        <children>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Số CCCD : " />
-                                          <TextField />
+                                          <TextField fx:id="txtSoCCCD" />
                                        </children>
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="90.0" prefHeight="32.0" prefWidth="268.0">
                                        <children>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SĐT người mượn : " />
-                                          <TextField />
+                                          <TextField fx:id="txtSDT" />
                                        </children>
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="26.0" prefHeight="32.0" prefWidth="268.0">
                                        <children>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nhân viên lập : " />
-                                          <TextField />
+                                          <TextField fx:id="txtNVLap" />
                                        </children>
                                     </HBox>
-                                    <Button mnemonicParsing="false" text="CHO MƯỢN" />
-                                    <TableView prefHeight="319.0" prefWidth="411.0" />
+                                    <Button mnemonicParsing="false" onAction="#muonSach" text="CHO MƯỢN" />
+                                    <TableView fx:id="tbSachMuon" prefHeight="319.0" prefWidth="411.0" />
                                  </children>
                               </VBox>
-                              <VBox prefHeight="551.0" prefWidth="323.0">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="TRẢ SÁCH" />
-                                    <HBox prefHeight="35.0" prefWidth="317.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã sách mượn : " />
-                                          <TextField />
-                                       </children>
-                                    </HBox>
-                                    <Button mnemonicParsing="false" text="NHẬN SÁCH" />
-                                    <AnchorPane prefHeight="479.0" prefWidth="317.0">
-                                       <children>
-                                          <TableView layoutX="2.0" layoutY="13.0" prefHeight="465.0" prefWidth="314.0" />
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </VBox>
+                              <VBox prefHeight="551.0" prefWidth="323.0" />
                            </children>
                         </HBox>
                      </children>
                   </AnchorPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="TRẢ SÁCH">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TRẢ SÁCH" />
+                  <Text layoutX="14.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mã sách trả : " />
+                  <TextField layoutX="85.0" layoutY="36.0" />
+                  <TableView fx:id="tbSachTra" layoutX="14.0" layoutY="118.0" prefHeight="419.0" prefWidth="575.0" />
+                  <Button layoutX="14.0" layoutY="92.0" mnemonicParsing="false" text="Cập nhật bảng" />
+                  <Button layoutX="264.0" layoutY="35.0" mnemonicParsing="false" text="Nhận sách" />
                </children>
             </AnchorPane>
         </content>

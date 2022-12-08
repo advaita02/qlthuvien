@@ -84,5 +84,4 @@ public class FXMLDangNhapController implements Initializable {
             Logger.getLogger(FXMLDangNhapController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
 }

@@ -4,9 +4,11 @@
  */
 package com.mycompany.qlthuvien;
 
+import com.lth.bojo.MuonTra;
 import com.lth.bojo.Sach;
 import com.lth.bojo.SachThanhLy;
 import com.lth.conf.Utils;
+import com.lth.service.MuonTraService;
 import com.lth.service.SachService;
 import com.lth.service.SachTLService;
 import java.net.URL;
@@ -32,14 +34,24 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * @author hunii
  */
 public class FXMLMainController implements Initializable {
+    @FXML private TableView<MuonTra> tbSachTra;
     @FXML private TextField txtMaSach;
     @FXML private TextField txtTenSach;
     @FXML private TextField txtTenTacGia;
     @FXML private DatePicker dpNamXuatBan;
     @FXML private TextField txtSoTrang;
+    @FXML private TextField txtGiaBia;
     @FXML private TableView<Sach> tbSach;
     @FXML private TableView<SachThanhLy> tbThanhLy;
+    @FXML private TableView<Sach> tbSachMuon;
     @FXML private TextField txtKeyWord;
+    // muon sach
+    @FXML private TextField txtMaSachMuon;
+    @FXML private DatePicker dpNgayMuon;
+    @FXML private TextField txtHTNguoiMuon;
+    @FXML private TextField txtSoCCCD;
+    @FXML private TextField txtSDT;
+    @FXML private TextField txtNVLap;
 
     /**
      * Initializes the controller class.
@@ -49,9 +61,13 @@ public class FXMLMainController implements Initializable {
         // TODO
         this.loadTableView();
         this.loadTableViewTL();
+        this.loadTableTra();
+        this.loadTableViewMuon();
         try {
             this.loadTableViewDate(null);
             this.loadTableViewTL(null);
+            this.loadTableSachCoTheMuon(null);
+            this.loadTableViewTra(null);
         } catch (SQLException ex) {
             Logger.getLogger(FXMLMainController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -64,11 +80,28 @@ public class FXMLMainController implements Initializable {
         });
     }
     
+    public void muonSach(ActionEvent event) throws SQLException {
+        Date date = java.sql.Date.valueOf(this.dpNgayMuon.getValue());
+        
+        MuonTra m = new MuonTra(Integer.parseInt(this.txtMaSachMuon.getText()), date, this.txtHTNguoiMuon.getText(), Integer.parseInt(this.txtSoCCCD.getText()), this.txtSDT.getText(), this.txtNVLap.getText());
+        MuonTraService msv = new MuonTraService();
+        if (msv.checkMaSach(Integer.parseInt(this.txtMaSachMuon.getText())) == true) {
+            try {
+                msv.addMuonTra(m);
+                Utils.getBox("Thêm sách thành công!", Alert.AlertType.INFORMATION).show();
+            } catch (SQLException ex) {
+                Utils.getBox("Thêm thất bại!", Alert.AlertType.WARNING).show();
+            }
+        }
+        else {
+            Utils.getBox("Mã sách không tồn tại", Alert.AlertType.WARNING).show();
+        }
+    }
     public void addSachHandler(ActionEvent event) {
         Date date = java.sql.Date.valueOf(this.dpNamXuatBan.getValue());
         
-        Sach s = new Sach(this.txtTenSach.getText(), this.txtTenTacGia.getText(), date, 1, Integer.parseInt(this.txtSoTrang.getText()));
-        
+//        Sach s = new Sach(this.txtTenSach.getText(), this.txtTenTacGia.getText(), date, 1, Integer.parseInt(this.txtSoTrang.getText()), Integer.parseInt(this.txtGiaBia.getText()));
+        Sach s = new Sach(this.txtTenSach.getText(), this.txtTenTacGia.getText(), date, 1, Integer.parseInt(this.txtSoTrang.getText()), Integer.parseInt(this.txtGiaBia.getText()));
         SachService sv = new SachService();
         try {
             sv.addBook(s);
@@ -107,9 +140,10 @@ public class FXMLMainController implements Initializable {
         colMaSach.setCellValueFactory(new PropertyValueFactory("maSach"));
         colTenSach.setCellValueFactory(new PropertyValueFactory("tenSach"));
         colTenTG.setCellValueFactory(new PropertyValueFactory("tenTacGia"));
-        colNamXB.setCellValueFactory(new PropertyValueFactory("tinhTrang"));
-        colTinhTrang.setCellValueFactory(new PropertyValueFactory("maSach"));
+        colNamXB.setCellValueFactory(new PropertyValueFactory("NamXB"));
+        colTinhTrang.setCellValueFactory(new PropertyValueFactory("tinhTrang"));
         colSoTrang.setCellValueFactory(new PropertyValueFactory("soTrang"));
+        colGiaBia.setCellValueFactory(new PropertyValueFactory("giaBia"));
 
         colMaSach.setPrefWidth(25 + 35);
         colTenSach.setPrefWidth(100 + 20);
@@ -121,7 +155,6 @@ public class FXMLMainController implements Initializable {
         
         this.tbSach.getColumns().addAll(colMaSach, colTenSach, colTenTG, colNamXB, colTinhTrang, colSoTrang, colGiaBia);
     }
-    
     private void loadTableViewTL() {
         TableColumn colMaSach = new TableColumn("Mã sách");
         TableColumn colTenSach = new TableColumn("Tên sách");
@@ -143,13 +176,69 @@ public class FXMLMainController implements Initializable {
 
         this.tbThanhLy.getColumns().addAll(colMaSach, colTenSach, colTenTG, colSoTrang, colGiaBan);
     }
+    private void loadTableTra() {
+        TableColumn colMaSach = new TableColumn("Mã sách");
+        TableColumn colNgayMuon = new TableColumn("Ngày mượn");
+        TableColumn colHoTen = new TableColumn("Tên người mượn");
+        TableColumn colCCCD = new TableColumn("Số CCCD");
+        TableColumn colSDT = new TableColumn("Số điện thoại");
+        TableColumn colNV = new TableColumn("Nhân viên lập");
+        
+        colMaSach.setCellValueFactory(new PropertyValueFactory("maSach_MuonTra"));
+        colNgayMuon.setCellValueFactory(new PropertyValueFactory("ngayMuonDate"));
+        colHoTen.setCellValueFactory(new PropertyValueFactory("hoTenNguoiMuon"));
+        colCCCD.setCellValueFactory(new PropertyValueFactory("soCCCD"));
+        colSDT.setCellValueFactory(new PropertyValueFactory("soDTNguoiMuon"));
+        colNV.setCellValueFactory(new PropertyValueFactory("nVLap"));
+
+        colMaSach.setPrefWidth(25 + 35);
+        colNgayMuon.setPrefWidth(100 + 20);
+        colHoTen.setPrefWidth(75 + 20);
+        colCCCD.setPrefWidth(25 + 35);
+        colSDT.setPrefWidth(50 + 20);
+        colNV.setPrefWidth(75 + 20);
+
+        this.tbSachTra.getColumns().addAll(colMaSach, colNgayMuon, colHoTen, colCCCD, colSDT, colNV);
+    }
+    private void loadTableViewMuon() {
+        TableColumn colMaSach = new TableColumn("Mã sách");
+        TableColumn colTenSach = new TableColumn("Tên sách");
+        TableColumn colTenTG = new TableColumn("Tên tác giả");
+        TableColumn colNamXB = new TableColumn("Năm xuất bản");
+        TableColumn colSoTrang = new TableColumn("Số trang");
+        TableColumn colGiaBia = new TableColumn("Giá bìa");
+        
+        colMaSach.setCellValueFactory(new PropertyValueFactory("maSach"));
+        colTenSach.setCellValueFactory(new PropertyValueFactory("tenSach"));
+        colTenTG.setCellValueFactory(new PropertyValueFactory("tenTacGia"));
+        colNamXB.setCellValueFactory(new PropertyValueFactory("NamXB"));
+        colSoTrang.setCellValueFactory(new PropertyValueFactory("maSach"));
+        colGiaBia.setCellValueFactory(new PropertyValueFactory("soTrang"));
+
+        colMaSach.setPrefWidth(25 + 35);
+        colTenSach.setPrefWidth(100 + 20);
+        colTenTG.setPrefWidth(75 + 20);
+        colNamXB.setPrefWidth(100 + 20);
+        colSoTrang.setPrefWidth(25 + 35);
+        colGiaBia.setPrefWidth(50 + 20);
+        
+        this.tbSachMuon.getColumns().addAll(colMaSach, colTenSach, colTenTG, colNamXB, colSoTrang, colGiaBia);
+    }
     
     private void loadTableViewDate(String kw) throws SQLException {
         SachService s = new SachService();
         this.tbSach.setItems(FXCollections.observableList(s.getBook(kw)));
     }
+    private void loadTableSachCoTheMuon(String kw) throws SQLException {
+        SachService s = new SachService();
+        this.tbSachMuon.setItems(FXCollections.observableList(s.getSachCoTheMuon(kw)));
+    }
     private void loadTableViewTL(String kw) throws SQLException {
         SachTLService stl = new SachTLService();
         this.tbThanhLy.setItems(FXCollections.observableList(stl.getThanhLy(kw)));
+    }
+    private void loadTableViewTra(String kw) throws SQLException {
+        MuonTraService mt = new MuonTraService();
+        this.tbSachTra.setItems(FXCollections.observableList(mt.getMuonTra(kw)));
     }
 }
