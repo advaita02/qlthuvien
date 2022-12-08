@@ -4,6 +4,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -66,6 +67,66 @@
                <children>
                   <TableView fx:id="tbThanhLy" layoutX="3.0" layoutY="14.0" prefHeight="503.0" prefWidth="594.0" />
                </children></AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="MƯỢN/TRẢ SÁCH">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <AnchorPane layoutX="6.0" layoutY="1.0" prefHeight="550.0" prefWidth="585.0">
+                     <children>
+                        <HBox prefHeight="551.0" prefWidth="587.0">
+                           <children>
+                              <VBox prefHeight="551.0" prefWidth="301.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MƯỢN SÁCH" />
+                                    <HBox prefHeight="32.0" prefWidth="268.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã sách : " />
+                                          <TextField />
+                                       </children>
+                                    </HBox>
+                                    <Button mnemonicParsing="false" text="CHO MƯỢN" />
+                                    <AnchorPane prefHeight="475.0" prefWidth="268.0">
+                                       <children>
+                                          <TableView layoutX="-2.0" layoutY="14.0" prefHeight="449.0" prefWidth="275.0">
+                                            <columns>
+                                              <TableColumn prefWidth="75.0" text="C1" />
+                                              <TableColumn prefWidth="75.0" text="C2" />
+                                            </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="551.0" prefWidth="323.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="TRẢ SÁCH" />
+                                    <HBox prefHeight="35.0" prefWidth="317.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã sách : " />
+                                          <TextField />
+                                       </children>
+                                    </HBox>
+                                    <Button mnemonicParsing="false" text="CHO MƯỢN" />
+                                    <AnchorPane prefHeight="479.0" prefWidth="317.0">
+                                       <children>
+                                          <TableView layoutX="2.0" layoutY="13.0" prefHeight="449.0" prefWidth="314.0">
+                                            <columns>
+                                              <TableColumn prefWidth="75.0" text="C1" />
+                                              <TableColumn prefWidth="75.0" text="C2" />
+                                            </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
         </content>
       </Tab>
   </tabs>

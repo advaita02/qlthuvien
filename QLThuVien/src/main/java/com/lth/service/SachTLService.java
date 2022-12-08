@@ -42,9 +42,9 @@ public class SachTLService {
             while(rs.next()) {
                 SachThanhLy e = new SachThanhLy(rs.getInt("MaSachTL"), 
                         rs.getString("TenSach"), 
-                        rs.getString("TenTacGia"),
+                        rs.getString("TacGia"),
                         rs.getInt("SoTrang"),
-                        rs.getInt("GiaBia")
+                        rs.getInt("GiaBan")
                 );
                 thanhlys.add(e);
             }

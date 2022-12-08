@@ -5,8 +5,10 @@
 package com.mycompany.qlthuvien;
 
 import com.lth.bojo.Sach;
+import com.lth.bojo.SachThanhLy;
 import com.lth.conf.Utils;
 import com.lth.service.SachService;
+import com.lth.service.SachTLService;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -36,7 +38,7 @@ public class FXMLMainController implements Initializable {
     @FXML private DatePicker dpNamXuatBan;
     @FXML private TextField txtSoTrang;
     @FXML private TableView<Sach> tbSach;
-    @FXML private TableView<Sach> tbThanhLy;
+    @FXML private TableView<SachThanhLy> tbThanhLy;
     @FXML private TextField txtKeyWord;
 
     /**
@@ -46,8 +48,10 @@ public class FXMLMainController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         this.loadTableView();
+        this.loadTableViewTL();
         try {
             this.loadTableViewDate(null);
+            this.loadTableViewTL(null);
         } catch (SQLException ex) {
             Logger.getLogger(FXMLMainController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -58,7 +62,7 @@ public class FXMLMainController implements Initializable {
                 Logger.getLogger(FXMLMainController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-    }    
+    }
     
     public void addSachHandler(ActionEvent event) {
         Date date = java.sql.Date.valueOf(this.dpNamXuatBan.getValue());
@@ -98,7 +102,6 @@ public class FXMLMainController implements Initializable {
         colNamXB.setCellValueFactory(new PropertyValueFactory("tinhTrang"));
         colTinhTrang.setCellValueFactory(new PropertyValueFactory("maSach"));
         colSoTrang.setCellValueFactory(new PropertyValueFactory("soTrang"));
-        colGiaBia.setCellValueFactory(new PropertyValueFactory("giaBia"));
 
         colMaSach.setPrefWidth(25 + 35);
         colTenSach.setPrefWidth(100 + 20);
@@ -108,13 +111,37 @@ public class FXMLMainController implements Initializable {
         colSoTrang.setPrefWidth(25 + 35);
         colGiaBia.setPrefWidth(50 + 20);
         
-        this.tbThanhLy.getColumns().addAll(colMaSach, colTenSach, colTenTG, colNamXB, colTinhTrang, colSoTrang, colGiaBia);
         this.tbSach.getColumns().addAll(colMaSach, colTenSach, colTenTG, colNamXB, colTinhTrang, colSoTrang, colGiaBia);
+    }
+    
+    private void loadTableViewTL() {
+        TableColumn colMaSach = new TableColumn("Mã sách");
+        TableColumn colTenSach = new TableColumn("Tên sách");
+        TableColumn colTenTG = new TableColumn("Tên tác giả");
+        TableColumn colSoTrang = new TableColumn("Số trang");
+        TableColumn colGiaBan = new TableColumn("Giá bán");
+
+        colMaSach.setCellValueFactory(new PropertyValueFactory("maSach_ThanhLy"));
+        colTenSach.setCellValueFactory(new PropertyValueFactory("tenSach"));
+        colTenTG.setCellValueFactory(new PropertyValueFactory("tacGia"));
+        colSoTrang.setCellValueFactory(new PropertyValueFactory("soTrang"));
+        colGiaBan.setCellValueFactory(new PropertyValueFactory("giaBan"));
+
+        colMaSach.setPrefWidth(25 + 35);
+        colTenSach.setPrefWidth(100 + 20);
+        colTenTG.setPrefWidth(75 + 20);
+        colSoTrang.setPrefWidth(25 + 35);
+        colGiaBan.setPrefWidth(50 + 20);
+
+        this.tbThanhLy.getColumns().addAll(colMaSach, colTenSach, colTenTG, colSoTrang, colGiaBan);
     }
     
     private void loadTableViewDate(String kw) throws SQLException {
         SachService s = new SachService();
         this.tbSach.setItems(FXCollections.observableList(s.getBook(kw)));
     }
-    
+    private void loadTableViewTL(String kw) throws SQLException {
+        SachTLService stl = new SachTLService();
+        this.tbThanhLy.setItems(FXCollections.observableList(stl.getThanhLy(kw)));
+    }
 }
