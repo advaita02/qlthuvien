@@ -9,6 +9,7 @@ import com.lth.bojo.Sach;
 import com.lth.bojo.SachThanhLy;
 import com.lth.conf.JdbcUtils;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -46,6 +47,7 @@ public class MuonTraService {
 //        }
 //        return muontras;
 //    }
+
     public List<MuonTra> getSachDangMuon(String kw) throws SQLException {
         List<MuonTra> muons = new ArrayList<>();
         try ( Connection conn = JdbcUtils.getConn()) {
@@ -68,8 +70,9 @@ public class MuonTraService {
         }
         return muons;
     }
+
     public void addMuonTra(MuonTra m) throws SQLException {
-        try (Connection conn = JdbcUtils.getConn()) {
+        try ( Connection conn = JdbcUtils.getConn()) {
             PreparedStatement stm = conn.prepareStatement("INSERT INTO muontra(MaSach, NgayMuon, HoTenNguoiMuon, SoCCCD, SDTNguoiMuon, NVLap) values(?, ?, ?, ?, ?, ?)");
             stm.setInt(1, m.getMaSach_MuonTra());
             stm.setDate(2, m.getNgayMuonDate());
@@ -82,13 +85,14 @@ public class MuonTraService {
             conn.commit();
         }
     }
+
     public boolean checkMaSach(int id) throws SQLException {
-        try (Connection conn = JdbcUtils.getConn()){
-            Statement stm= conn.createStatement();
+        try ( Connection conn = JdbcUtils.getConn()) {
+            Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("SELECT * FROM sach where TinhTrang = 1");
-            
-            while(rs.next()){
-                if(id == (rs.getInt("MaSach"))){
+
+            while (rs.next()) {
+                if (id == (rs.getInt("MaSach"))) {
                     PreparedStatement stm1 = conn.prepareStatement("update sach set sach.TinhTrang = 0 where sach.MaSach = ?");
                     stm1.setInt(1, id);
                     stm1.executeUpdate();
@@ -100,16 +104,21 @@ public class MuonTraService {
         }
         return false;
     }
+
     public boolean checkSachMuon(int id) throws SQLException {
-        try (Connection conn = JdbcUtils.getConn()){
-            Statement stm= conn.createStatement();
+        try ( Connection conn = JdbcUtils.getConn()) {
+            Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery("SELECT * FROM muontra");
 
-            while(rs.next()){
-                if(id == (rs.getInt("MaSach"))){
+            while (rs.next()) {
+                if (id == (rs.getInt("MaSach"))) {
                     PreparedStatement stm2 = conn.prepareStatement("update sach set sach.TinhTrang = 1 where sach.MaSach = ?");
                     stm2.setInt(1, id);
                     stm2.executeUpdate();
+
+                    PreparedStatement stm3 = conn.prepareStatement("DELETE from muontra where MaSach = ?");
+                    stm3.setInt(1, id);
+                    stm3.executeUpdate();
 
                     return true;
                 }
@@ -118,4 +127,20 @@ public class MuonTraService {
         }
         return false;
     }
+    public boolean kiemTraTreHan(int id) throws SQLException {
+        try ( Connection conn = JdbcUtils.getConn()) {
+//            PreparedStatement stm1 = conn.prepareStatement("select MaSach from muontra \n" +
+//"where NgayMuon <= date_sub(now(), interval 15 day)");
+//            stm1.setInt(1, id);
+            Statement stm1 = conn.createStatement();
+            ResultSet rs = stm1.executeQuery("select * from muontra where NgayMuon = date_sub(now(), interval 15 day)");
+            while (rs.next()) {
+                if (rs.getInt("MaSach")==id) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 }

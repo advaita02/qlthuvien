@@ -132,8 +132,12 @@ public class FXMLMainController implements Initializable {
         MuonTraService mt = new MuonTraService();
         if (mt.checkSachMuon(Integer.parseInt(this.txtMaSachTra.getText())) == true) {
             Utils.getBox("Tr? sách thành công!", Alert.AlertType.INFORMATION).show();
+            if(mt.kiemTraTreHan(Integer.parseInt(this.txtMaSachTra.getText()))== true){
+                Utils.getBox("Tra sach tre han!", Alert.AlertType.WARNING).show();
+            }
         }
-        Utils.getBox("Tra? sách thất bại!", Alert.AlertType.WARNING).show();
+        else
+            Utils.getBox("Tra? sách thất bại!", Alert.AlertType.WARNING).show();
 
     }
     
