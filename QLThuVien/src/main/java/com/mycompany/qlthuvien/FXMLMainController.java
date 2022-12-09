@@ -11,9 +11,14 @@ import com.lth.conf.Utils;
 import com.lth.service.MuonTraService;
 import com.lth.service.SachService;
 import com.lth.service.SachTLService;
+import static java.lang.String.format;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Formatter;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -82,16 +87,19 @@ public class FXMLMainController implements Initializable {
     }
     
     public void muonSach(ActionEvent event) throws SQLException {
-        Date date = java.sql.Date.valueOf(this.dpNgayMuon.getValue());
-        
+        LocalDate local = this.dpNgayMuon.getValue();
+        DateTimeFormatter Formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//        String d = local.format(Formatter);
+        Date date = java.sql.Date.valueOf(local.format(Formatter));
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         MuonTra m = new MuonTra(Integer.parseInt(this.txtMaSachMuon.getText()), date, this.txtHTNguoiMuon.getText(), Integer.parseInt(this.txtSoCCCD.getText()), this.txtSDT.getText(), this.txtNVLap.getText());
         MuonTraService msv = new MuonTraService();
         if (msv.checkMaSach(Integer.parseInt(this.txtMaSachMuon.getText())) == true) {
             try {
                 msv.addMuonTra(m);
-                Utils.getBox("Thêm sách thành công!", Alert.AlertType.INFORMATION).show();
+                Utils.getBox("Mượn sách thành công!", Alert.AlertType.INFORMATION).show();
             } catch (SQLException ex) {
-                Utils.getBox("Thêm thất bại!", Alert.AlertType.WARNING).show();
+                Utils.getBox("Mượn thất bại!", Alert.AlertType.WARNING).show();
             }
         }
         else {
@@ -124,8 +132,9 @@ public class FXMLMainController implements Initializable {
         SachTLService stl = new SachTLService();
         try {
             stl.addThanhLy();
+            Utils.getBox("Đã thêm sách >= 10 năm vào thanh lý!", Alert.AlertType.INFORMATION).show();
         } catch (SQLException ex) {
-            Logger.getLogger(FXMLMainController.class.getName()).log(Level.SEVERE, null, ex);
+            Utils.getBox("Thêm sách thất bại!", Alert.AlertType.WARNING).show();
         }
     }
     public void traSach(ActionEvent event) throws SQLException{

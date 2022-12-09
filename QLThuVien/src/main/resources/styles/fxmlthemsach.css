@@ -12,6 +12,17 @@ VBox {
 HBox {
     -fx-spacing: 10;
 }
+AnchorPane {
+    -fx-background-color: lightblue;
+
+}
+Text.ThemSach {
+    -fx-font-size: 20;
+    -fx-alignment: CENTER;
+    -fx-fill: yellow;
+    -fx-font-weight: bold;
+}
+
 .mainFxmlClass {
 
 }

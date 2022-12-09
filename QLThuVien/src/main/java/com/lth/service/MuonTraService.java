@@ -82,7 +82,7 @@ public class MuonTraService {
             stm.setString(6, m.getnVLap());
 
             stm.executeUpdate();
-            conn.commit();
+            
         }
     }
 
@@ -100,7 +100,7 @@ public class MuonTraService {
                     return true;
                 }
             }
-            conn.commit();
+            
         }
         return false;
     }

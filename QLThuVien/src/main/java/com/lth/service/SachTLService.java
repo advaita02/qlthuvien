@@ -19,13 +19,13 @@ import java.util.List;
  * @author hunii
  */
 public class SachTLService {
-    public void get10Nam() throws SQLException {
-        try (Connection conn = JdbcUtils.getConn()) {
-            Statement stm = conn.createStatement();
-            String query = "";
-
-        }
-    }
+//    public void get10Nam() throws SQLException {
+//        try (Connection conn = JdbcUtils.getConn()) {
+//            Statement stm = conn.createStatement();
+//            String query = "";
+//
+//        }
+//    }
     public void addThanhLy () throws SQLException {
         try (Connection conn = JdbcUtils.getConn()) {
             Statement stm = conn.createStatement();
@@ -33,7 +33,7 @@ public class SachTLService {
 "SELECT MaSach, TenSach , TenTacGia, SoTrang, GiaBia * 0.5  FROM sach\n" +
 "WHERE MaSach not in (select MaSachTL from sachthanhly) and NamXuatBan <= date_sub(now(), interval 10 year)";
             stm.executeUpdate(sql);
-            conn.commit();
+            
         }
         
     }

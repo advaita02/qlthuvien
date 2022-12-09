@@ -1,6 +1,16 @@
 /*
  * Empty Stylesheet file.
  */
+VBox {
+    -fx-background-color: lightblue;
+    -fx-padding: 10;
+    -fx-spacing: 10;
+    -fx-alignment: CENTER;
+}
+HBox {
+    -fx-spacing: 10;
+    -fx-alignment: CENTER;
+}
 
 .mainFxmlClass {
 

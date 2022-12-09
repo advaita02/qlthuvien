@@ -6,9 +6,11 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="588.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.qlthuvien.FXMLMainController">
@@ -19,7 +21,7 @@
                <children>
                   <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="600.0" stylesheets="@../../../styles/fxmlthemsach.css">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="THÊM SÁCH" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ThemSach" text="THÊM SÁCH" />
                         <HBox layoutX="10.0" layoutY="26.0" prefHeight="33.0" prefWidth="600.0">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tên sách : " />
@@ -51,7 +53,7 @@
                            </children>
                         </HBox>
                         <Button mnemonicParsing="false" onAction="#addSachHandler" text="Thêm" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="XÓA SÁCH" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ThemSach" text="XÓA SÁCH" wrappingWidth="112.29953002929688" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nhập mã sách để xóa sách :" />
                         <TextField fx:id="txtMaSach" prefHeight="23.0" prefWidth="222.0" />
                         <HBox prefHeight="41.0" prefWidth="600.0">
@@ -68,7 +70,7 @@
     </Tab>
       <Tab text="THANH LÝ SÁCH">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: lightblue;">
                <children>
                   <TableView fx:id="tbThanhLy" layoutX="3.0" layoutY="58.0" prefHeight="459.0" prefWidth="594.0" />
                   <Button layoutX="242.0" layoutY="14.0" mnemonicParsing="false" onAction="#addSachTLHandler" prefHeight="27.0" prefWidth="89.0" text="CẬP NHẬT" />
@@ -83,48 +85,54 @@
                      <children>
                         <HBox prefHeight="551.0" prefWidth="587.0">
                            <children>
-                              <VBox prefHeight="551.0" prefWidth="920.0">
+                              <VBox alignment="CENTER" prefHeight="551.0" prefWidth="569.0" style="-fx-padding: 10; -fx-spacing: 10;">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MƯỢN SÁCH" />
-                                    <HBox prefHeight="32.0" prefWidth="268.0">
+                                    <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="MƯỢN SÁCH" textAlignment="CENTER" wrappingWidth="589.4186096191406">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font></Text>
+                                    <HBox prefHeight="29.0" prefWidth="591.0">
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã sách : " />
-                                          <TextField fx:id="txtMaSachMuon" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mã sách : " wrappingWidth="128.20834350585938" />
+                                          <TextField fx:id="txtMaSachMuon" prefHeight="25.0" prefWidth="395.0" />
                                        </children>
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="26.0" prefHeight="32.0" prefWidth="268.0">
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày mượn : " />
-                                          <DatePicker fx:id="dpNgayMuon" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày mượn : " wrappingWidth="129.09893798828125" />
+                                          <DatePicker fx:id="dpNgayMuon" prefHeight="25.0" prefWidth="419.0" />
                                        </children>
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="83.0" prefHeight="32.0" prefWidth="268.0">
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Họ tên người mượn : " />
-                                          <TextField fx:id="txtHTNguoiMuon" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Họ tên người mượn : " wrappingWidth="128.71942138671875" />
+                                          <TextField fx:id="txtHTNguoiMuon" prefHeight="25.0" prefWidth="396.0" />
                                        </children>
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="90.0" prefHeight="32.0" prefWidth="268.0">
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Số CCCD : " />
-                                          <TextField fx:id="txtSoCCCD" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Số CCCD : " wrappingWidth="128.572265625" />
+                                          <TextField fx:id="txtSoCCCD" prefHeight="25.0" prefWidth="395.0" />
                                        </children>
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="90.0" prefHeight="32.0" prefWidth="268.0">
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SĐT người mượn : " />
-                                          <TextField fx:id="txtSDT" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SĐT người mượn : " wrappingWidth="127.82489013671875" />
+                                          <TextField fx:id="txtSDT" prefHeight="25.0" prefWidth="397.0" />
                                        </children>
                                     </HBox>
                                     <HBox layoutX="10.0" layoutY="26.0" prefHeight="32.0" prefWidth="268.0">
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nhân viên lập : " />
-                                          <TextField fx:id="txtNVLap" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nhân viên lập : " wrappingWidth="128.2011730670929" />
+                                          <TextField fx:id="txtNVLap" prefHeight="25.0" prefWidth="395.0" />
                                        </children>
                                     </HBox>
-                                    <Button mnemonicParsing="false" onAction="#muonSach" text="CHO MƯỢN" />
-                                    <TableView fx:id="tbSachMuon" prefHeight="319.0" prefWidth="411.0" />
+                                    <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#muonSach" prefHeight="25.0" prefWidth="105.0" text="CHO MƯỢN" textAlignment="CENTER" />
+                                    <TableView fx:id="tbSachMuon" prefHeight="269.0" prefWidth="591.0" />
                                  </children>
+                                 <effect>
+                                    <Blend />
+                                 </effect>
                               </VBox>
                               <VBox prefHeight="551.0" prefWidth="323.0" />
                            </children>
@@ -139,12 +147,14 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TRẢ SÁCH" />
-                  <Text layoutX="14.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mã sách trả : " />
-                  <TextField fx:id="txtMaSachTra" layoutX="85.0" layoutY="36.0" />
+                  <Text fill="#de0000" fontSmoothingType="LCD" layoutX="54.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TRẢ SÁCH" textAlignment="CENTER" wrappingWidth="492.2610778808594">
+                     <font>
+                        <Font name="Tahoma Bold" size="20.0" />
+                     </font></Text>
+                  <Text layoutX="19.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mã sách trả : " />
+                  <TextField fx:id="txtMaSachTra" layoutX="102.0" layoutY="61.0" prefHeight="25.0" prefWidth="304.0" />
                   <TableView fx:id="tbSachDangMuon" layoutX="14.0" layoutY="118.0" prefHeight="419.0" prefWidth="575.0" />
-                  <Button layoutX="14.0" layoutY="92.0" mnemonicParsing="false" text="Cập nhật bảng" />
-                  <Button layoutX="264.0" layoutY="35.0" mnemonicParsing="false" onAction="#traSach" text="Nhận sách" />
+                  <Button layoutX="450.0" layoutY="61.0" mnemonicParsing="false" onAction="#traSach" text="Nhận sách" />
                </children>
             </AnchorPane>
         </content>

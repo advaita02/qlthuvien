@@ -29,7 +29,7 @@ public class SachService {
             stm.setInt(6, s.getSoTrang());
             stm.setInt(7, s.getGiaBia());
             stm.executeUpdate();
-            conn.commit();
+            
         }
     }
     public void deleteBook(int id) throws SQLException {
@@ -56,7 +56,7 @@ public class SachService {
 
             stm1.executeUpdate();
             
-            conn.commit();
+            
         }
     }
     
@@ -85,7 +85,6 @@ public class SachService {
          }
         return sachs;
     }
-    
     public List<Sach> getSachCoTheMuon(String kw) throws SQLException {
          List<Sach> sachs = new ArrayList<>();
          try (Connection conn = JdbcUtils.getConn()) {
