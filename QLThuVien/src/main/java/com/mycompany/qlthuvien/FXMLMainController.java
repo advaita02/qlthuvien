@@ -92,7 +92,7 @@ public class FXMLMainController implements Initializable {
 //        String d = local.format(Formatter);
         Date date = java.sql.Date.valueOf(local.format(Formatter));
 //        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        MuonTra m = new MuonTra(Integer.parseInt(this.txtMaSachMuon.getText()), date, this.txtHTNguoiMuon.getText(), Integer.parseInt(this.txtSoCCCD.getText()), this.txtSDT.getText(), this.txtNVLap.getText());
+        MuonTra m = new MuonTra(Integer.parseInt(this.txtMaSachMuon.getText()), date, this.txtHTNguoiMuon.getText(), Integer.parseInt(this.txtSoCCCD.getText()), this.txtSDT.getText(), Integer.parseInt(this.txtNVLap.getText()));
         MuonTraService msv = new MuonTraService();
         if (msv.checkMaSach(Integer.parseInt(this.txtMaSachMuon.getText())) == true) {
             try {

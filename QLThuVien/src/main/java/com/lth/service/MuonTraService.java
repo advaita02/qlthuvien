@@ -63,7 +63,7 @@ public class MuonTraService {
             while (rs.next()) {
                 MuonTra s = new MuonTra(rs.getInt("MaSach"), rs.getDate("NgayMuon"),
                         rs.getString("HoTenNguoiMuon"), rs.getInt("SoCCCD"),
-                        rs.getString("SDTNguoiMuon"), rs.getString("NVLap")
+                        rs.getString("SDTNguoiMuon"), rs.getInt("NVLap")
                 );
                 muons.add(s);
             }
@@ -79,7 +79,7 @@ public class MuonTraService {
             stm.setString(3, m.getHoTenNguoiMuon());
             stm.setInt(4, m.getSoCCCD());
             stm.setString(5, m.getSoDTNguoiMuon());
-            stm.setString(6, m.getnVLap());
+            stm.setInt(6, m.getnVLap());
 
             stm.executeUpdate();
             

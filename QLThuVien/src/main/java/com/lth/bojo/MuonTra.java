@@ -16,12 +16,12 @@ public class MuonTra {
     private String hoTenNguoiMuon;
     private int soCCCD;
     private String soDTNguoiMuon;
-    private String nVLap;
+    private int nVLap;
 
     public MuonTra() {
     }
 
-    public MuonTra(int maSach_MuonTra, Date ngayMuonDate, String hoTenNguoiMuon, int soCCCD, String soDTNguoiMuon, String nVLap) {
+    public MuonTra(int maSach_MuonTra, Date ngayMuonDate, String hoTenNguoiMuon, int soCCCD, String soDTNguoiMuon, int nVLap) {
         this.maSach_MuonTra = maSach_MuonTra;
         this.ngayMuonDate = ngayMuonDate;
         this.hoTenNguoiMuon = hoTenNguoiMuon;
@@ -105,14 +105,14 @@ public class MuonTra {
     /**
      * @return the nVLap
      */
-    public String getnVLap() {
+    public int getnVLap() {
         return nVLap;
     }
 
     /**
      * @param nVLap the nVLap to set
      */
-    public void setnVLap(String nVLap) {
+    public void setnVLap(int nVLap) {
         this.nVLap = nVLap;
     }
 }
