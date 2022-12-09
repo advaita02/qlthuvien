@@ -34,7 +34,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * @author hunii
  */
 public class FXMLMainController implements Initializable {
-    @FXML private TableView<MuonTra> tbSachTra;
+    @FXML private TableView<MuonTra> tbSachDangMuon;
     @FXML private TextField txtMaSach;
     @FXML private TextField txtTenSach;
     @FXML private TextField txtTenTacGia;
@@ -52,7 +52,7 @@ public class FXMLMainController implements Initializable {
     @FXML private TextField txtSoCCCD;
     @FXML private TextField txtSDT;
     @FXML private TextField txtNVLap;
-
+    @FXML private TextField txtMaSachTra;
     /**
      * Initializes the controller class.
      */
@@ -61,13 +61,14 @@ public class FXMLMainController implements Initializable {
         // TODO
         this.loadTableView();
         this.loadTableViewTL();
-        this.loadTableTra();
         this.loadTableViewMuon();
+        this.loadTableTra();
         try {
             this.loadTableViewDate(null);
             this.loadTableViewTL(null);
             this.loadTableSachCoTheMuon(null);
-            this.loadTableViewTra(null);
+            this.loadTableDangMuon(null);
+//            this.loadTableViewTra(null);
         } catch (SQLException ex) {
             Logger.getLogger(FXMLMainController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -126,6 +127,14 @@ public class FXMLMainController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(FXMLMainController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    public void traSach(ActionEvent event) throws SQLException{
+        MuonTraService mt = new MuonTraService();
+        if (mt.checkSachMuon(Integer.parseInt(this.txtMaSachTra.getText())) == true) {
+            Utils.getBox("Tr? sách thành công!", Alert.AlertType.INFORMATION).show();
+        }
+        Utils.getBox("Tra? sách thất bại!", Alert.AlertType.WARNING).show();
+
     }
     
     private void loadTableView() {
@@ -198,7 +207,7 @@ public class FXMLMainController implements Initializable {
         colSDT.setPrefWidth(50 + 20);
         colNV.setPrefWidth(75 + 20);
 
-        this.tbSachTra.getColumns().addAll(colMaSach, colNgayMuon, colHoTen, colCCCD, colSDT, colNV);
+        this.tbSachDangMuon.getColumns().addAll(colMaSach, colNgayMuon, colHoTen, colCCCD, colSDT, colNV);
     }
     private void loadTableViewMuon() {
         TableColumn colMaSach = new TableColumn("Mã sách");
@@ -212,8 +221,8 @@ public class FXMLMainController implements Initializable {
         colTenSach.setCellValueFactory(new PropertyValueFactory("tenSach"));
         colTenTG.setCellValueFactory(new PropertyValueFactory("tenTacGia"));
         colNamXB.setCellValueFactory(new PropertyValueFactory("NamXB"));
-        colSoTrang.setCellValueFactory(new PropertyValueFactory("maSach"));
-        colGiaBia.setCellValueFactory(new PropertyValueFactory("soTrang"));
+        colSoTrang.setCellValueFactory(new PropertyValueFactory("soTrang"));
+        colGiaBia.setCellValueFactory(new PropertyValueFactory("giaBia"));
 
         colMaSach.setPrefWidth(25 + 35);
         colTenSach.setPrefWidth(100 + 20);
@@ -237,8 +246,12 @@ public class FXMLMainController implements Initializable {
         SachTLService stl = new SachTLService();
         this.tbThanhLy.setItems(FXCollections.observableList(stl.getThanhLy(kw)));
     }
-    private void loadTableViewTra(String kw) throws SQLException {
+//    private void loadTableViewTra(String kw) throws SQLException {
+//        MuonTraService mt = new MuonTraService();
+//        this.tbSachTra.setItems(FXCollections.observableList(mt.getMuonTra(kw)));
+//    }
+    private void loadTableDangMuon(String kw) throws SQLException {
         MuonTraService mt = new MuonTraService();
-        this.tbSachTra.setItems(FXCollections.observableList(mt.getMuonTra(kw)));
+        this.tbSachDangMuon.setItems(FXCollections.observableArrayList(mt.getSachDangMuon(kw)));
     }
 }

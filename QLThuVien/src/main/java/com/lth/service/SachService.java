@@ -45,11 +45,17 @@ public class SachService {
             stm.setInt(1, id);
 
             stm.executeUpdate();
+            
+            PreparedStatement stm2 = conn.prepareStatement("DELETE FROM muontra where MaSach = ?");
+            stm2.setInt(1, id);
+            
+            stm2.executeUpdate();
 
             PreparedStatement stm1 = conn.prepareStatement("DELETE FROM sach where MaSach = ?");
             stm1.setInt(1, id);
 
             stm1.executeUpdate();
+            
             conn.commit();
         }
     }

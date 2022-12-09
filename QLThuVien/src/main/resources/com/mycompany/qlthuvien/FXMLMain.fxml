@@ -141,10 +141,10 @@
                <children>
                   <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TRẢ SÁCH" />
                   <Text layoutX="14.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mã sách trả : " />
-                  <TextField layoutX="85.0" layoutY="36.0" />
-                  <TableView fx:id="tbSachTra" layoutX="14.0" layoutY="118.0" prefHeight="419.0" prefWidth="575.0" />
+                  <TextField fx:id="txtMaSachTra" layoutX="85.0" layoutY="36.0" />
+                  <TableView fx:id="tbSachDangMuon" layoutX="14.0" layoutY="118.0" prefHeight="419.0" prefWidth="575.0" />
                   <Button layoutX="14.0" layoutY="92.0" mnemonicParsing="false" text="Cập nhật bảng" />
-                  <Button layoutX="264.0" layoutY="35.0" mnemonicParsing="false" text="Nhận sách" />
+                  <Button layoutX="264.0" layoutY="35.0" mnemonicParsing="false" onAction="#traSach" text="Nhận sách" />
                </children>
             </AnchorPane>
         </content>

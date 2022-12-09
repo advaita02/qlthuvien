@@ -21,32 +21,52 @@ import java.util.List;
  * @author hunii
  */
 public class MuonTraService {
-    public List<MuonTra> getMuonTra(String kw) throws SQLException {
-//        addThanhLy();
-        List<MuonTra> muontras = new ArrayList<>();
-
+//    public List<MuonTra> getMuonTra(String kw) throws SQLException {
+//        List<MuonTra> muontras = new ArrayList<>();
+//        try (Connection conn = JdbcUtils.getConn()) {
+//            String sql = "Select * from muontra";
+//            if (kw != null && !kw.isEmpty()) {
+//                sql += " WHERE TenSach like concat('%', ?, '%')";
+//            }
+//            PreparedStatement stm = conn.prepareStatement(sql);
+//            if (kw != null && !kw.isEmpty()) {
+//                stm.setString(1, kw);
+//            }
+//            ResultSet rs = stm.executeQuery();
+//            while (rs.next()) {
+//                MuonTra e = new MuonTra(rs.getInt("maSach_MuonTra"),
+//                        rs.getDate("ngayMuonDate"),
+//                        rs.getString("hoTenNguoiMuon"),
+//                        rs.getInt("soCCCD"),
+//                        rs.getString("soDTNguoiMuon"),
+//                        rs.getString("nVLap")
+//                );
+//                muontras.add(e);
+//            }
+//        }
+//        return muontras;
+//    }
+    public List<MuonTra> getSachDangMuon(String kw) throws SQLException {
+        List<MuonTra> muons = new ArrayList<>();
         try ( Connection conn = JdbcUtils.getConn()) {
             String sql = "Select * from muontra";
-            if (kw != null && !kw.isEmpty()) {
-                sql += " WHERE TenSach like concat('%', ?, '%')";
-            }
+//             if(kw != null && !kw.isEmpty()) {
+//                 sql += " WHERE NVLap like concat('%', ?, '%')";
+//             }
             PreparedStatement stm = conn.prepareStatement(sql);
             if (kw != null && !kw.isEmpty()) {
                 stm.setString(1, kw);
             }
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
-                MuonTra e = new MuonTra(rs.getInt("maSach_MuonTra"),
-                        rs.getDate("ngayMuonDate"),
-                        rs.getString("hoTenNguoiMuon"),
-                        rs.getInt("soCCCD"),
-                        rs.getString("soDTNguoiMuon"),
-                        rs.getString("nVLap")
+                MuonTra s = new MuonTra(rs.getInt("MaSach"), rs.getDate("NgayMuon"),
+                        rs.getString("HoTenNguoiMuon"), rs.getInt("SoCCCD"),
+                        rs.getString("SDTNguoiMuon"), rs.getString("NVLap")
                 );
-                muontras.add(e);
+                muons.add(s);
             }
         }
-        return muontras;
+        return muons;
     }
     public void addMuonTra(MuonTra m) throws SQLException {
         try (Connection conn = JdbcUtils.getConn()) {
@@ -72,6 +92,24 @@ public class MuonTraService {
                     PreparedStatement stm1 = conn.prepareStatement("update sach set sach.TinhTrang = 0 where sach.MaSach = ?");
                     stm1.setInt(1, id);
                     stm1.executeUpdate();
+
+                    return true;
+                }
+            }
+            conn.commit();
+        }
+        return false;
+    }
+    public boolean checkSachMuon(int id) throws SQLException {
+        try (Connection conn = JdbcUtils.getConn()){
+            Statement stm= conn.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT * FROM muontra");
+
+            while(rs.next()){
+                if(id == (rs.getInt("MaSach"))){
+                    PreparedStatement stm2 = conn.prepareStatement("update sach set sach.TinhTrang = 1 where sach.MaSach = ?");
+                    stm2.setInt(1, id);
+                    stm2.executeUpdate();
 
                     return true;
                 }
